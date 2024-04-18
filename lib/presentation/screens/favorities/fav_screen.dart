@@ -13,17 +13,24 @@ class FavouriteScreen extends StatelessWidget {
         builder: (context, state) {
           return ConditionalBuilder(
             condition: state is! ShopLoadingGetFavouritesState,
-             builder: (context) => ListView.separated(
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) => buildProductItems(AppshopCubit.get(context).favouritesModel!.data!.data[index].product, context),
-                    separatorBuilder: (context, index) => const Divider(),
-                    itemCount: AppshopCubit.get(context).favouritesModel!.data!.data.length),
-                   fallback: (context) => const Center(child: CircularProgressIndicator()
-                ),
+            builder: (context) => ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) => buildProductItems(
+                    AppshopCubit.get(context)
+                        .favouritesModel!
+                        .data!
+                        .data[index]
+                        .product,
+                    context),
+                separatorBuilder: (context, index) => const Divider(),
+                itemCount: AppshopCubit.get(context)
+                    .favouritesModel!
+                    .data!
+                    .data
+                    .length),
+            fallback: (context) =>
+                const Center(child: CircularProgressIndicator()),
           );
         });
   }
-
-
-
 }

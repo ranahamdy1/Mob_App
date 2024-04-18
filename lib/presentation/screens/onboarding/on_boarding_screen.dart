@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/constants/shard.dart';
+import 'package:shop_app/data/shared_pref/cash_helper.dart';
 import 'package:shop_app/presentation/screens/auth/login_screen.dart';
 import 'package:shop_app/presentation/screens/onboarding/onboarding_widgets.dart';
-import 'package:shop_app/shardpref/cash_helper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatefulWidget {

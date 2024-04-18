@@ -37,8 +37,7 @@ class AppshopCubit extends Cubit<AppshopState> {
   Map<int, bool> favourites = {};
 
   void getHomedata() {
-    DioHelper.getData(
-        url: Endpoints.home, token: token).then((value) {
+    DioHelper.getData(url: Endpoints.home, token: token).then((value) {
       homeModel = HomeModel.fromJson(value.data);
       for (var element in homeModel!.data.products) {
         favourites.addAll({element.id: element.favorites});
@@ -87,43 +86,41 @@ class AppshopCubit extends Cubit<AppshopState> {
       emit(ShopErrorUserDataState());
     });
   }
+
+  //fav
   Changefavouritesmodel? changefavouritesmodel;
-  void changeFavourities(int productId){
-//fav
-emit(Changefavourites());
+  void changeFavourities(int productId) {
+    emit(Changefavourites());
     favourites[productId] = !favourites[productId]!;
 
-
-      DioHelper.postData(url: Endpoints.favorites, data: {
-          'product_id':productId
-      },
-      token: token
-      ).then((value){
-        changefavouritesmodel=Changefavouritesmodel.fromjson(value.data);
-        if(!changefavouritesmodel!.status!){
-          favourites[productId] = !favourites[productId]!;
-        }else{
-          getFavourites();
-        }
-        emit(ChangefavouritesSuccess(changefavouritesmodel!));
-      }).catchError((onError){
+    DioHelper.postData(
+            url: Endpoints.favorites,
+            data: {'product_id': productId},
+            token: token)
+        .then((value) {
+      changefavouritesmodel = Changefavouritesmodel.fromjson(value.data);
+      if (!changefavouritesmodel!.status!) {
         favourites[productId] = !favourites[productId]!;
-        emit(ChangefavouritesError());
-        debugPrint(onError);
-      });
+      } else {
+        getFavourites();
+      }
+      emit(ChangefavouritesSuccess(changefavouritesmodel!));
+    }).catchError((onError) {
+      favourites[productId] = !favourites[productId]!;
+      emit(ChangefavouritesError());
+      debugPrint(onError);
+    });
   }
 
   FavouritesModel? favouritesModel;
-  void getFavourites(){
-        DioHelper.getData(url: Endpoints.favorites,
-        token: token).then((value){
-          favouritesModel = FavouritesModel.fromJson(value.data);
-          emit(ShopSuccessGetFavouritesState());
-
-        }).catchError((onError){
-          emit(ShopErrorGetFavouritesState());
-          debugPrint(onError);
-        });
+  void getFavourites() {
+    DioHelper.getData(url: Endpoints.favorites, token: token).then((value) {
+      favouritesModel = FavouritesModel.fromJson(value.data);
+      emit(ShopSuccessGetFavouritesState());
+    }).catchError((onError) {
+      emit(ShopErrorGetFavouritesState());
+      debugPrint(onError);
+    });
   }
 
   void updateUserdata({

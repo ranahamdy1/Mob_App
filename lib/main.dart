@@ -7,10 +7,10 @@ import 'package:shop_app/bussiness_logic/login_cubit/cubit/login_state.dart';
 import 'package:shop_app/bussiness_logic/search_cubit/cubit/search_cubit.dart';
 import 'package:shop_app/constants/shard.dart';
 import 'package:shop_app/data/dio/dio_helper.dart';
+import 'package:shop_app/data/shared_pref/cash_helper.dart';
 import 'package:shop_app/presentation/screens/auth/login_screen.dart';
 import 'package:shop_app/presentation/screens/layout/layout.dart';
 import 'package:shop_app/presentation/screens/onboarding/on_boarding_screen.dart';
-import 'package:shop_app/shardpref/cash_helper.dart';
 import 'bussiness_logic/register/cubit/register_cubit.dart';
 
 void main() async {
@@ -38,7 +38,6 @@ void main() async {
   ));
 }
 
-// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   Widget? startWidget;
   MyApp({super.key, this.startWidget});

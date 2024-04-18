@@ -16,9 +16,14 @@ class LayoutScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             actions: [
-              IconButton(onPressed: (){
-                navigateTo(context,  SearchScreen());
-              }, icon: const Icon(Icons.search,color: Colors.black,))
+              IconButton(
+                  onPressed: () {
+                    navigateTo(context, SearchScreen());
+                  },
+                  icon: const Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  ))
             ],
             backgroundColor: Colors.white,
             elevation: 0.0,
@@ -29,20 +34,17 @@ class LayoutScreen extends StatelessWidget {
                   color: Colors.black,
                   fontFamily: "Cairo",
                   fontSize: 30),
-                  
             ),
           ),
           body: cubit.bottomScreens[cubit.currentIndex],
           bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed ,
+            type: BottomNavigationBarType.fixed,
             onTap: (index) {
               cubit.changeNavbar(index);
             },
             currentIndex: cubit.currentIndex,
-           
             items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home), label: 'Home'),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.apps), label: 'Categories'),
               BottomNavigationBarItem(

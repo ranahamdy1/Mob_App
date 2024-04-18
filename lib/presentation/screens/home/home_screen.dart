@@ -180,13 +180,16 @@ class HomeScreen extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "${model.name}",
-              style: const TextStyle(
-                  height: 2,
-                  fontFamily: "Cairo",
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold),
+            Container(
+              height: 60,
+              child: Text(
+                "${model.name}",
+                style: const TextStyle(
+                    height: 2,
+                    fontFamily: "Cairo",
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
